@@ -5,7 +5,7 @@ import useFetch from './useFetch';
 
 const BlogDetails = () => {
     const { id } = useParams();
-    const { data: blog, error, isPending } = useFetch('http://localhost:3000/blogs/'+ id);
+    const { data: posts, error, isPending } = useFetch('http://localhost:3001/posts/'+ id);
     const history = useHistory();
 // useHistory() creates a history stack and pushes or pops elements from that stack
 // allows us to store the blogs
@@ -14,7 +14,7 @@ const BlogDetails = () => {
 // delete button and then we push the URL to the history stack redirecting
 // the user to the homepage after the blogs deletion
     const handleClick = () => {
-        fetch('http://localhost:3000/blogs/'+blog.id, {
+        fetch('http://localhost:3001/posts/'+posts.id, {
             method: 'DELETE'
         }). then(() => {
             history.push('/');
@@ -25,9 +25,9 @@ const BlogDetails = () => {
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
             <article>
-                <h2>{blog.title}</h2>
-                <p>Written by {blog.author}</p>
-                <div>{blog.body}</div>
+                <h2>{posts.title}</h2>
+                <p>Category: {posts.category}</p>
+                <div>{posts.body}</div>
                 <button onClick={handleClick}>Delete</button>
             </article>
         </div>
