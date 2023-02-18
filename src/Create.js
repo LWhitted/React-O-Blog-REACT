@@ -7,20 +7,24 @@ import { useHistory } from 'react-router-dom';
 const Create = () => {
     const [title, setTitle] =useState('');
     const [body, setBody] = useState('');
-    const [author, setAuthor] = useState('');
+    const [category, setCategory] = useState('');
     const [isPending, setIsPending] = useState(false);
     const history = useHistory();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const blog = { title, body, author };
+        // const blog = { title, body, author };
 
         setIsPending(true);
-
-        fetch('http:/localhost:3000/blogs', {
+// I think I need to use axios here since it is a Post method??
+        await fetch('http:/localhost:3001/posts', {
             method:'POST',
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(blog)
+            body: JSON.stringify({
+                title: title,
+                body: body,
+                category: category
+            })
         }).then(() => {
             setIsPending(false);
             history.push('/');
@@ -43,11 +47,11 @@ const Create = () => {
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-                <label>Blog author:</label>
+                <label>Blog category:</label>
                 <textarea
                     required
-                    value={author}
-                    onChange={(e) => setAuthor(e.target.value)}
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
                 />
                 {!isPending && <button>Add Blog</button>}
                 {isPending && <button disabled>Adding Blog</button>}
