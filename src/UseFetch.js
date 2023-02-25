@@ -23,7 +23,7 @@ const useFetch = (url) => {
             })
             .then(data => {
                 
-                setData(JSON.stringify(data));
+                setData(data);
                 setIsPending(false);
                 setError(null);
             })
