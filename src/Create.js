@@ -17,7 +17,7 @@ const Create = () => {
 
         setIsPending(true);
 // I think I need to use axios here since it is a Post method??
-        await fetch('http://localhost:3001/posts', {
+        await fetch('/posts', {
             method:'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
