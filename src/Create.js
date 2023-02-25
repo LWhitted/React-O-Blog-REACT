@@ -1,7 +1,7 @@
 // this component is used to create new blogs in our React app.
 
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // this code builds the basic form to add a blog. we only display add blog
 // button if isPending is false
 const Create = () => {
@@ -9,7 +9,7 @@ const Create = () => {
     const [body, setBody] = useState('');
     const [category, setCategory] = useState('');
     const [isPending, setIsPending] = useState(false);
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,13 +17,16 @@ const Create = () => {
 
         setIsPending(true);
 // I think I need to use axios here since it is a Post method??
-        await fetch('http:/localhost:3001/posts', {
+        await fetch('http://localhost:3001/posts', {
             method:'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 title: title,
                 body: body,
-                category: category
+                category: category,
+                isPublished: true,
+                createdAt: new Date(),
+                updatedAt: new Date()
             })
         }).then(() => {
             setIsPending(false);

@@ -13,15 +13,16 @@ const useFetch = (url) => {
 
         // should I be using setTimeout()?
         setTimeout(() => {
-            fetch(url, {singal: abortCont.signal})
+             fetch(url, {signal: abortCont.signal}, {
+                method: "GET"
+            }) 
             .then(res => {
-                if(!res.ok)
-                {
-                    throw Error('Could not fetch data for that resource');
-                }
-                return res.json();
+                console.log(res)
+                //when res.json, get <DocType> error message
+                return res
             })
-            .then((data) => {
+            .then(data => {
+                
                 setData(data);
                 setIsPending(false);
                 setError(null);
@@ -35,7 +36,7 @@ const useFetch = (url) => {
                     setIsPending(false);
                 }
             })
-        }, 5);
+        }, 5000);
         return () => abortCont.abort();
     }, [url]);
 
