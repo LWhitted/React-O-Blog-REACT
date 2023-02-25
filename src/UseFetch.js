@@ -19,11 +19,11 @@ const useFetch = (url) => {
             .then(res => {
                 console.log(res)
                 //when res.json, get <DocType> error message
-                return res
+                return res.json()
             })
             .then(data => {
                 
-                setData(data);
+                setData(JSON.stringify(data));
                 setIsPending(false);
                 setError(null);
             })

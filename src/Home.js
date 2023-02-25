@@ -2,7 +2,8 @@ import BlogList from './BlogList';
 import useFetch from './UseFetch';
 
 const Home = () => {
-    const {data: posts, isPending, error} = useFetch('http://localhost:3001/');
+    const {data: posts, isPending, error} = useFetch('/posts');
+    console.log(posts);
     // http will not return data (fetch aborted) && give us cors issues, https will not retrieve data
     return (
         <div className="home">
