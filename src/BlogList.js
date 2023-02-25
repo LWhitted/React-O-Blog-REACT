@@ -1,17 +1,16 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const BlogList = ({posts, title}) => {
     return (
         <div className="blog-list">
             <h2>{title}</h2>
-            {posts.map(posts => (
+            {/* {posts.forEach(posts => (
                 <div className="blog-preview" key={posts.id}>
-                    <Link to={`/posts/${posts.id}`}>
+                    <Link to={`/posts`}>
                         <h2>{posts.title}</h2>
-                        <p>Written by {posts.author}</p>
                     </Link>
                     </div>
-            ))}
+            ))} */}
         </div>
     );
 }
