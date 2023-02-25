@@ -14,7 +14,7 @@ const BlogDetails = () => {
 // delete button and then we push the URL to the history stack redirecting
 // the user to the homepage after the blogs deletion
     const handleClick = () => {
-        fetch('/posts/'+posts.id, {
+        fetch('/posts/'+id, {
             method: 'DELETE'
         }) 
         .then(() => {

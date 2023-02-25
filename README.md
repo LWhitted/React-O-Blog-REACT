@@ -1,3 +1,18 @@
+Lauren's notes on how to proceed with cleaning up this project for the portfolio:
+CSS obviously needs to be restructured, but in terms of the functionality of the page, everything works properly except for the links on
+the home page. basically the home page shows all the blog posts (titles) that exist in my database. When you click on the link, it should
+go to that specific blog post (Title, category, body, etc.).
+In order to make this fully function, I need to add another component "CurrentPost" to host that linked information. Right now it is not 
+going anywhere to retrieve the data.
+I beieve in the new component I will need to use the following
+import {useParams, Link} from 'react-router-dom';
+<Link to={`/posts/${item.id}`}>
+  ... 
+</Link>
+Within the App.js I will also need to add a private path
+<PrivateRoute path='/Profile/:id' component={EditUser} />
+go to this link for guidance: https://stackoverflow.com/questions/63614183/react-router-dom-link-how-can-i-put-an-id-into-the-path-of-link
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

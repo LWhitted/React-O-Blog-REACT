@@ -10,13 +10,13 @@ const Create = () => {
     const [category, setCategory] = useState('');
     const [isPending, setIsPending] = useState(false);
     const history = useNavigate();
+    const arrHistory = Array.from(history);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const blog = { title, body, author };
 
         setIsPending(true);
-// I think I need to use axios here since it is a Post method??
+
         await fetch('/posts', {
             method:'POST',
             headers: {"Content-Type": "application/json"},
@@ -30,7 +30,7 @@ const Create = () => {
             })
         }).then(() => {
             setIsPending(false);
-            history.push('/');
+            arrHistory.push('/');
         })
     }
     return (

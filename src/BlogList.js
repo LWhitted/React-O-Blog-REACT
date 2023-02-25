@@ -1,21 +1,28 @@
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 
-const BlogList = ({posts, title}) => {
+const BlogList = ({ posts, title }) => {
+    console.log(posts);
+    const createdPosts = useMemo(() => {
+        return Array.from(posts).map(post => {
+            console.log(post);
+            return (
+                <div className="blog-preview" key={post.id}>
+                    <Link to={`/posts`}>
+                    <h2>{post.title}</h2>
+                    </Link>
+                </div>
+            )
+        })
+    }, [posts])
+    console.log(createdPosts);
     return (
         <div className="blog-list">
             <h2>{title}</h2>
-            {/* {posts.forEach(posts => (
-                <div className="blog-preview" key={posts.id}>
-                    <Link to={`/posts`}>
-                        <h2>{posts.title}</h2>
-                    </Link>
-                    </div>
-            ))} */}
+            {createdPosts}
         </div>
     );
 }
 
 export default BlogList;
 
-// I believe this js I might need to somehow pull in the endpoints from my server. I need to
-// come back to this js to analyze
